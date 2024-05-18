@@ -9,11 +9,11 @@
         "discord.js": "^14.15.2"
     },
     "scripts": {
-        "replace-paths": "node scripts/module-paths.mjs",
+        "replace-paths": "node scripts/module-path.mjs",
         "rm": "rm -r dist",
-        "build": "yarm rm && yarn tsc && yarn replace-paths",
+        "build": "yarn rm && yarn tsc && yarn replace-paths",
         "watch": "yarn tsc --watch",
-        "dev": "yarn build && node dist/init.js"
+        "dev": "yarn build && node dist/index.js"
     },
     "devDependencies": {
         "@eslint/js": "^9.2.0",
