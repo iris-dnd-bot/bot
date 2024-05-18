@@ -920,6 +920,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iris@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "iris@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.2.0"
+    "@prisma/client": "npm:5.13.0"
+    chalk: "npm:^5.3.0"
+    discord.js: "npm:^14.15.2"
+    eslint: "npm:^9.2.0"
+    prettier: "npm:3.2.5"
+    prisma: "npm:^5.13.0"
+    typescript: "npm:^5.4.5"
+    typescript-eslint: "npm:^7.8.0"
+  languageName: unknown
+  linkType: soft
+
 "is-extglob@npm:^2.1.1":
   version: 2.1.1
   resolution: "is-extglob@npm:2.1.1"
@@ -1226,22 +1242,6 @@ __metadata:
   checksum: 10c0/200b5ab25b5b8b7113f9901bfe3afc347e19bb7475b267d55ad0eb86a62a46d77510cb0f232507c9e5d497ebda569a08a9867d0d14f57a82ad5564d991588b39
   languageName: node
   linkType: hard
-
-"sapphira@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "sapphira@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.2.0"
-    "@prisma/client": "npm:5.13.0"
-    chalk: "npm:^5.3.0"
-    discord.js: "npm:^14.15.2"
-    eslint: "npm:^9.2.0"
-    prettier: "npm:3.2.5"
-    prisma: "npm:^5.13.0"
-    typescript: "npm:^5.4.5"
-    typescript-eslint: "npm:^7.8.0"
-  languageName: unknown
-  linkType: soft
 
 "semver@npm:^7.6.0":
   version: 7.6.1

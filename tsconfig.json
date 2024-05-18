@@ -8,6 +8,7 @@
         "esModuleInterop": true,
         "rootDir": "src",
         "outDir": "dist",
+        "baseUrl": "src",
         "strict": true,
         "alwaysStrict": true,
         "strictFunctionTypes": true,
@@ -23,7 +24,11 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "downlevelIteration": true,
-        "paths": {},
+        "paths": {
+            "@iris/utils/*": ["packages/utils/*"],
+            "@iris/client/*": ["packages/client/*"],
+            "@iris/errors/*": ["packages/errors/*"]
+        },
         "pretty": true
     }
 }
