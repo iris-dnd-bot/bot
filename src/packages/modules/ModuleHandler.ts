@@ -2,17 +2,15 @@ import { IrisClient } from '@iris/client/index.js';
 import { EventEmitter } from 'node:events';
 import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { IrisCollection } from '@iris/utils/Collection.js';
-const require = createRequire(import.meta.url);
-
+import { IrisModule } from './IrisModule.js';
 export interface IrisModuleHandlerOptions {
     directory: string;
 }
 
-export class IrisModuleHandler extends EventEmitter {
+export class IrisModuleHandler<T extends IrisModule> extends EventEmitter {
     client: IrisClient;
-    modules: IrisCollection<any>;
+    modules: IrisCollection<T>;
     options: IrisModuleHandlerOptions;
 
     constructor(client: IrisClient, options: IrisModuleHandlerOptions) {
@@ -22,14 +20,14 @@ export class IrisModuleHandler extends EventEmitter {
         this.modules = new IrisCollection();
     }
 
-    get(id: string) {
+    get(id: string): T | undefined {
         return this.modules.get(id);
     }
 
-    loadAll() {
+    async loadAll() {
         const files = this.readdirRecursive(this.options.directory);
         for (const file of files) {
-            const data = require(file);
+            const data = await import(file);
             if (data.default) {
                 const mod = new data.default();
                 mod.client = this.client;

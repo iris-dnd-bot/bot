@@ -5,7 +5,7 @@ import tsconfig from '../tsconfig.json' with { type: 'json' };
 import process from 'node:process';
 
 /**
- *
+ * reads all files.
  * @returns {string[]}
  */
 function readAllFiles() {
@@ -43,8 +43,9 @@ for (const file of files) {
   for (const path of paths) {
     if (newContent.includes(path.replace('*', ''))) {
       const name = file.replace(process.cwd(), '');
-
-      log(`[INFO] updating ${name}...`);
+      if (!updated) {
+        log(`[INFO] updating ${name}...`);
+      }
       const npath =
         pathlib.resolve(
           process.cwd(),

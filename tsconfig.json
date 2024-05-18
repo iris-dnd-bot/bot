@@ -27,7 +27,9 @@
         "paths": {
             "@iris/utils/*": ["packages/utils/*"],
             "@iris/client/*": ["packages/client/*"],
-            "@iris/errors/*": ["packages/errors/*"]
+            "@iris/errors/*": ["packages/errors/*"],
+            "@iris/modules/*": ["packages/modules/*"],
+            "@iris/events/*": ["packages/events/*"]
         },
         "pretty": true
     }

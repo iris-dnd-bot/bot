@@ -1,3 +1,4 @@
+import { IrisModuleOptions } from '@iris/modules/IrisModule.js';
 import fs from 'fs';
 export function keys<T extends object>(thing: T): (keyof T)[] {
     return Object.keys(thing) as (keyof T)[];
@@ -16,4 +17,14 @@ export function getEnv() {
     }
 
     return env;
+}
+
+export function applyOptions<T extends IrisModuleOptions>(options: T) {
+    return (cls: any) => {
+        return class T extends cls {
+            constructor() {
+                super(options);
+            }
+        } as any;
+    };
 }
