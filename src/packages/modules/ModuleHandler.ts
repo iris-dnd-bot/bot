@@ -45,8 +45,8 @@ export class IrisModuleHandler<T extends IrisModule> extends EventEmitter {
             const files = fs.readdirSync(dir);
 
             for (const file of files) {
+                if (file.includes('.disabled')) continue;
                 const filepath = path.join(dir, file);
-
                 if (fs.statSync(filepath).isDirectory()) {
                     read(filepath);
                 } else {

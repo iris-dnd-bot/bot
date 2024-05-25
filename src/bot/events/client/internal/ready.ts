@@ -1,12 +1,12 @@
 import { IrisClient } from '@iris/client/index.js';
-import { EventModule, EventModuleOptions } from '@iris/events/EventModule.js';
+import { EventModule } from '@iris/events/EventModule.js';
 import { applyOptions } from '@iris/utils/functions.js';
-import { ActivityType, Events } from 'discord.js';
+import { ActivityType } from 'discord.js';
 
-@applyOptions<EventModuleOptions>({
+@applyOptions('EVENT', {
     category: 'events.client.internal',
     id: 'events.client.internal.ready',
-    event: Events.ClientReady,
+    event: EventModule.events.ClientReady,
     handler: 'client',
     type: 'on',
 })

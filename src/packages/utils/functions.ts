@@ -1,4 +1,5 @@
-import { IrisModuleOptions } from '@iris/modules/IrisModule.js';
+import { EventModuleOptions } from '@iris/events/EventModule.js';
+import { ChatInputCommandOptions } from '@iris/interactions/chat-input/ChatInputCommand.js';
 import fs from 'fs';
 export function keys<T extends object>(thing: T): (keyof T)[] {
     return Object.keys(thing) as (keyof T)[];
@@ -19,7 +20,13 @@ export function getEnv() {
     return env;
 }
 
-export function applyOptions<T extends IrisModuleOptions>(options: T) {
+export function applyOptions(t: 'CHAT_INPUT',options: ChatInputCommandOptions,): any;
+export function applyOptions(t: 'EVENT', options: EventModuleOptions): any;
+export function applyOptions(
+    t: 'CHAT_INPUT' | 'EVENT',
+    options: ChatInputCommandOptions | EventModuleOptions,
+): any {
+    t;
     return (cls: any) => {
         return class T extends cls {
             constructor() {

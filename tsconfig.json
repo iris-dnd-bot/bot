@@ -29,7 +29,9 @@
             "@iris/client/*": ["packages/client/*"],
             "@iris/errors/*": ["packages/errors/*"],
             "@iris/modules/*": ["packages/modules/*"],
-            "@iris/events/*": ["packages/events/*"]
+            "@iris/events/*": ["packages/events/*"],
+            "@iris/interactions/*": ["packages/commands/interactions/*"],
+            "@iris/commands/*":["packages/commands/*"]
         },
         "pretty": true
     }

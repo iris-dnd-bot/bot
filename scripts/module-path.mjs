@@ -42,7 +42,7 @@ for (const file of files) {
     let updated = false;
     for (const path of paths) {
         if (newContent.includes(path.replace('*', ''))) {
-            const name = file.replace(process.cwd(), '');
+            const name = file.replace(process.cwd(), '$ROOT');
             if (!updated) {
                 log(`[INFO] updating ${name}...`);
             }
