@@ -41,7 +41,7 @@ for (const file of files) {
     let newContent = content;
     let updated = false;
     for (const path of paths) {
-        if (newContent.includes(path.replace('*', ''))) {
+        if (newContent.includes(path.replaceAll('*', ''))) {
             const name = file.replace(process.cwd(), '$ROOT');
             if (!updated) {
                 log(`[INFO] updating ${name}...`);
@@ -50,9 +50,9 @@ for (const file of files) {
                 pathlib.resolve(
                     process.cwd(),
                     'dist',
-                    tsconfig.compilerOptions.paths[path][0].replace('*', ''),
+                    tsconfig.compilerOptions.paths[path][0].replaceAll('*', ''),
                 ) + '/';
-            newContent = newContent.replaceAll(path.replace('*', ''), npath);
+            newContent = newContent.replaceAll(path.replaceAll('*', ''), npath);
             log(`[INFO] updated ${name}...`);
             updated = true;
         }
