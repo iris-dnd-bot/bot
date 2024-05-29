@@ -1,5 +1,7 @@
 # Iris
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/iris-dnd-bot/bot/main.svg)](https://results.pre-commit.ci/latest/github/iris-dnd-bot/bot/main)
+
 ## installation
 
 -   have node installed.
