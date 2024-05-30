@@ -16,6 +16,7 @@
         "discord.js": "^14.15.2"
     },
     "scripts": {
+        "wf:build": "tsc && scripts/module-paths.mjs",
         "replace-paths": "node scripts/module-path.mjs",
         "rm": "rm -r dist",
         "build": "yarn rm && yarn tsc && yarn replace-paths",
