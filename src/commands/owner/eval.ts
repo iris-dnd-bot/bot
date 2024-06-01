@@ -13,5 +13,6 @@ export class EvalCommand extends CustomCommand {
     @ownerOnly()
     async run(ctx: PrefixContext) {
         ctx;
+        console.log('true');
     }
 }

@@ -1,7 +1,7 @@
 import '@sapphire/plugin-editable-commands/register';
 import { SapphireClient } from '@sapphire/framework';
-import { getEnv } from '@iris/utils/env.js';
 import { GatewayIntentBits } from 'discord.js';
+import { env } from '@iris/utils/constants.js';
 
 const client = new SapphireClient({
     intents: [
@@ -15,6 +15,5 @@ const client = new SapphireClient({
     },
     loadMessageCommandListeners: true,
 });
-const env = getEnv();
 
 await client.login(env.DISCORD_TOKEN);
