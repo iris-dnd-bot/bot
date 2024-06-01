@@ -15,7 +15,7 @@ export class RollCommand extends CustomCommand {
         const arg = await ctx.args.rest('string');
         const parsed = parseDice(arg);
         if (!parsed) {
-            return ctx.error(ctx.errorTypes.USER, new Error());
+            return ctx.error(ctx.errorTypes.USER, new Error('INVALID'));
         }
         let combined: number = 0;
         const rolls: number[] = [];

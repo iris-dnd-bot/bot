@@ -1,3 +1,4 @@
+import { version } from '@iris/utils/constants.js';
 import { Events, Listener, SapphireClient } from '@sapphire/framework';
 
 export class ReadyListener extends Listener {
@@ -13,7 +14,7 @@ export class ReadyListener extends Listener {
     }
     run(client: SapphireClient<true>) {
         this.container.logger.info(
-            `logged in as ${client.user.username} (${client.user.id})`,
+            `logged in as ${client.user.username} (${client.user.id}) [${version}]`,
         );
     }
 }

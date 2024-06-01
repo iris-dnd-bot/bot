@@ -1,5 +1,6 @@
+import { updateGitVersion } from './Util.js';
 import { getEnv } from './env.js';
-
+import pjson from '../../../package.json' with { type: 'json' };
 export const EMOTES = {
     DEFAULT: {
         error: ':x:',
@@ -14,3 +15,17 @@ export const EMOTES = {
 };
 
 export const env = getEnv();
+
+export const urls = {
+    github: {
+        repo: 'https://github.com/iris-dnd-bot/bot/',
+    },
+    support: {
+        github: 'https://github.com/iris-dnd-bot/bot/issues',
+        discord: env.SUPPORT_SERVER,
+    },
+};
+export const git = updateGitVersion();
+export const version = pjson.version + '/' + git.short;
+
+export const versionfull = `${pjson.version}/[${git.short}](${git.url}) `;

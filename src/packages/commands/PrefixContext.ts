@@ -7,7 +7,7 @@ import {
     PermissionResolvable,
 } from 'discord.js';
 import { CustomCommand } from './CustomCommand.js';
-import { EMOTES, env } from '@iris/utils/constants.js';
+import { EMOTES, env, urls } from '@iris/utils/constants.js';
 
 enum ErrorTypes {
     COMMAND,
@@ -62,7 +62,7 @@ export class PrefixContext {
                             ? `if this error keeps persisting. please report it on github.`
                             : [
                                   'if this error keeps persisting',
-                                  ` please report it in the support server ${env.SUPPORT_SERVER} `,
+                                  ` please report it in the [support server](${urls.support.discord}) or on [github](${urls.support.github}) `,
                               ].join(','),
                     ].join('\n'),
                 );
