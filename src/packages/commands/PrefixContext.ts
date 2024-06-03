@@ -1,4 +1,4 @@
-import { Args, SapphireClient } from '@sapphire/framework';
+import { Args, SapphireClient, container } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import {
     EmbedBuilder,
@@ -7,21 +7,33 @@ import {
     PermissionResolvable,
 } from 'discord.js';
 import { CustomCommand } from './CustomCommand.js';
-import { EMOTES, env, urls } from '@iris/utils/constants.js';
-
-enum ErrorTypes {
-    COMMAND,
-    USER,
-}
+import { EMOTES, languages } from '@iris/utils/constants.js';
+import { LanguageInterface } from '@iris/i18n/LanguageInterface.js';
+import { Internationalization, i18n } from '@iris/i18n/i18nManager.js';
 
 export class PrefixContext {
-    msg: Message<true>;
+    msg: Message;
     cmd: CustomCommand;
     args: Args;
-    constructor(msg: Message<true>, cmd: CustomCommand, args: Args) {
+    language: languages;
+    i18n: Internationalization;
+    constructor(
+        msg: Message,
+        cmd: CustomCommand,
+        args: Args,
+        language: languages,
+    ) {
         this.msg = msg;
+        this.language = language;
         this.cmd = cmd;
         this.args = args;
+        this.i18n = i18n;
+    }
+
+    lang<Key extends keyof LanguageInterface>(
+        key: Key,
+    ): LanguageInterface[Key] {
+        return this.i18n.get(this.language, key);
     }
 
     hasPermissions(
@@ -30,7 +42,7 @@ export class PrefixContext {
     ) {
         switch (t) {
             case 'CLIENT':
-                if (!this.channel.isTextBased()) {
+                if (this.channel.isDMBased()) {
                     return permission === 'UseExternalEmojis';
                 }
                 return this.channel
@@ -46,39 +58,57 @@ export class PrefixContext {
         return EMOTES.CUSTOM[emote];
     }
 
-    async error(type: ErrorTypes, error: Error) {
-        const isbeta = !!env.ENV;
+    async reply(
+        content: string | Exclude<MessageCreateOptions, 'content'>,
+        options?: Exclude<MessageCreateOptions, 'content'>,
+    ) {
+        if (typeof content !== 'string') {
+            content = content.content!;
+        }
+
+        return this.send({
+            ...(options || {}),
+            content,
+            allowedMentions: {
+                repliedUser: false,
+            },
+            reply: { messageReference: this.msg, failIfNotExists: true },
+        });
+    }
+
+    async say(
+        content: string,
+        options: Exclude<MessageCreateOptions, 'content'>,
+    ) {
+        return this.send({ ...options, content });
+    }
+
+    async success(message: string) {
+        return this.send({ content: `${this.emote('success')}: ${message}` });
+    }
+
+    async error(type: 'USER' | 'OTHER', error: Error) {
         const embed = new EmbedBuilder();
+        container.logger.error(error);
+
         switch (type) {
-            case ErrorTypes.COMMAND:
-                const e = `${error.name}[${error.cause ?? 'UNKNOWN'}] ${error.message}`;
+            case 'USER':
                 embed.setDescription(
-                    [
-                        `${this.emote('error')} failed to run the ${this.cmd.name} command:`,
-                        '```',
-                        `${e}`,
-                        '```',
-                        isbeta
-                            ? `if this error keeps persisting. please report it on github.`
-                            : [
-                                  'if this error keeps persisting',
-                                  ` please report it in the [support server](${urls.support.discord}) or on [github](${urls.support.github}) `,
-                              ].join(','),
-                    ].join('\n'),
+                    this.lang('commands:error')(error, type, this.cmd.name),
                 );
                 break;
 
-            case ErrorTypes.USER:
+            case 'OTHER':
                 embed.setDescription(
                     [
                         `${this.emote('error')} failed to run: \`${error.message}\` `,
                     ].join(' '),
                 );
         }
-        return this.reply({ content: '', embeds: [embed] });
+        return this.send({ content: '', embeds: [embed] });
     }
 
-    async reply(options: MessageCreateOptions) {
+    async send(options: MessageCreateOptions) {
         if (options.content && !options.embeds) {
             options.embeds = [];
         }
@@ -102,9 +132,5 @@ export class PrefixContext {
 
     get member() {
         return this.msg.member;
-    }
-
-    get errorTypes() {
-        return ErrorTypes;
     }
 }

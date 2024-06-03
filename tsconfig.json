@@ -25,13 +25,14 @@
         "experimentalDecorators": true,
         "downlevelIteration": true,
         "paths": {
-            "@iris/utils/*": ["packages/utils/*"],
             "@iris/client/*": ["packages/client/*"],
+            "@iris/commands/*": ["packages/commands/*"],
             "@iris/errors/*": ["packages/errors/*"],
-            "@iris/modules/*": ["packages/modules/*"],
             "@iris/events/*": ["packages/events/*"],
+            "@iris/i18n/*": ["packages/i18n/*"],
             "@iris/interactions/*": ["packages/commands/interactions/*"],
-            "@iris/commands/*":["packages/commands/*"]
+            "@iris/modules/*": ["packages/modules/*"],
+            "@iris/utils/*": ["packages/utils/*"]
         },
         "pretty": true
     }

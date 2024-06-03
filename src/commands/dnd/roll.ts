@@ -1,5 +1,6 @@
 import { CustomCommand } from '@iris/commands/CustomCommand.js';
 import { PrefixContext } from '@iris/commands/PrefixContext.js';
+import { CustomCommandError } from '@iris/errors/CustomCommandError.js';
 import { applyPrefixedCommandOptions } from '@iris/utils/decorators.js';
 import crypto from 'crypto';
 const REGEX = /(\+|\*|\-|\/)/;
@@ -11,11 +12,10 @@ const REGEX = /(\+|\*|\-|\/)/;
 })
 export class RollCommand extends CustomCommand {
     async run(ctx: PrefixContext) {
-        console.log('running');
         const arg = await ctx.args.rest('string');
         const parsed = parseDice(arg);
         if (!parsed) {
-            return ctx.error(ctx.errorTypes.USER, new Error('INVALID'));
+            return ctx.error('USER', new Error('INVALID'));
         }
         let combined: number = 0;
         const rolls: number[] = [];
@@ -29,13 +29,14 @@ export class RollCommand extends CustomCommand {
             }
         }
         const content = [
-            `Result of \`${arg}\`: (${combined})`,
             '```js',
-            rolls.join(', '),
+            `Details: "${arg.replaceAll(/\s+/g, '')}"`,
+            `${combined}`,
+            `(${rolls.join(', ')})`,
             '```',
             ``,
         ].join('\n');
-        return ctx.reply({ embeds: [{ description: content }] });
+        return ctx.send({ embeds: [{ description: content }] });
     }
 }
 
@@ -44,6 +45,9 @@ export function parseDice(
 ): { roll: number; n: number }[][] | null {
     if (input === null) {
         input = '1d20';
+    }
+    if (isNaN(+input[0])) {
+        throw new CustomCommandError('COMMAND_INPUT_INVALID');
     }
     const [times, sides] = input.split('d').filter((v) => v !== '');
     const [side, operator = '+', multiplier = '0'] = sides.split(REGEX);

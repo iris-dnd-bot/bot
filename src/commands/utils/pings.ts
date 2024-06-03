@@ -1,25 +1,20 @@
-import { Command } from '@sapphire/framework';
-import { send } from '@sapphire/plugin-editable-commands';
-import { EmbedBuilder, Message } from 'discord.js';
+import { CustomCommand } from '@iris/commands/CustomCommand.js';
+import { PrefixContext } from '@iris/commands/PrefixContext.js';
+import { applyPrefixedCommandOptions } from '@iris/utils/decorators.js';
 
-export class PingCommand extends Command {
-    constructor(ctx: Command.LoaderContext, opts: Command.Options) {
-        super(ctx, {
-            ...opts,
-            name: 'ping',
-            description: 'BONG',
+@applyPrefixedCommandOptions({
+    name: 'ping',
+    description: 'pings the bot',
+})
+export class PingCommand extends CustomCommand {
+    async run(ctx: PrefixContext) {
+        console.log('running');
+        const first = Date.now();
+        await ctx.reply({ content: ctx.lang('commands:ping:init') });
+        const apiping = Date.now() - first;
+        const wsping = ctx.client.ws.ping;
+        return ctx.reply({
+            content: ctx.lang('commands:ping:done')(wsping, apiping),
         });
-    }
-
-    async messageRun(msg: Message) {
-        const m = await send(msg, 'pong...');
-        const embed = new EmbedBuilder();
-        embed.setDescription(
-            `Pong! Bot Latency ${
-                this.container.client.ws.ping
-            }ms. API Latency ${m.createdTimestamp - msg.createdTimestamp}ms.`,
-        );
-
-        return send(msg, { content: '', embeds: [embed] });
     }
 }

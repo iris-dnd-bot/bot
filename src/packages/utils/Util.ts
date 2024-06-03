@@ -1,5 +1,6 @@
 import childProcess from 'node:child_process';
-import { urls } from './constants.js';
+import { languages, urls } from './constants.js';
+import { Locale } from 'discord.js';
 
 export function updateGitVersion() {
     const ref = childProcess
@@ -15,3 +16,13 @@ export function updateGitVersion() {
 }
 
 export class Utils {}
+export function parseLanguage(locale: Locale): languages {
+    switch (locale) {
+        case Locale.EnglishGB:
+            return languages.traditionalEnglish;
+        case Locale.EnglishUS:
+            return languages.simpleEnglish;
+        default:
+            return languages.simpleEnglish;
+    }
+}

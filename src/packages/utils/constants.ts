@@ -19,6 +19,8 @@ export const env = getEnv();
 export const urls = {
     github: {
         repo: 'https://github.com/iris-dnd-bot/bot/',
+        issues: 'https://github.com/iris-dnd-bot/bot/issues',
+        pr: 'https://github.com/iris-dnd-bot/bot/pulls',
     },
     support: {
         github: 'https://github.com/iris-dnd-bot/bot/issues',
@@ -29,3 +31,10 @@ export const git = updateGitVersion();
 export const version = pjson.version + '/' + git.short;
 
 export const versionfull = `${pjson.version}/[${git.short}](${git.url}) `;
+
+export enum languages {
+    simpleEnglish,
+    traditionalEnglish,
+}
+
+export const allowedLanguages = ['EN_US', 'EN_GB'] as const;

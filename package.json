@@ -12,6 +12,7 @@
         "@sapphire/discord.js-utilities": "^7.2.1",
         "@sapphire/framework": "^5.2.1",
         "@sapphire/plugin-editable-commands": "^4.0.2",
+        "@sapphire/plugin-logger": "^4.0.2",
         "@sapphire/utilities": "^3.16.2",
         "chalk": "^5.3.0",
         "discord.js": "^14.15.2"
@@ -19,6 +20,7 @@
     "scripts": {
         "replace-paths": "node scripts/module-path.mjs",
         "rm": "rm -rf dist",
+        "typecheck": "yarn tsc --noEmit",
         "build": "yarn rm && yarn tsc && yarn replace-paths",
         "watch": "yarn tsc --watch",
         "dev": "yarn build && node dist/index.js",

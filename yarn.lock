@@ -369,6 +369,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/plugin-logger@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@sapphire/plugin-logger@npm:4.0.2"
+  dependencies:
+    "@sapphire/timestamp": "npm:^1.0.3"
+    colorette: "npm:^2.0.20"
+  checksum: 10c0/d1672f454e3dd4d8e08e9790e021541011faf407a10c0ea780e159e62fba7afb1994f97e293522b886e6c517fdc28842567f906d6294b33a07e071e6439e3435
+  languageName: node
+  linkType: hard
+
 "@sapphire/ratelimits@npm:^2.4.9":
   version: 2.4.9
   resolution: "@sapphire/ratelimits@npm:2.4.9"
@@ -406,6 +416,13 @@ __metadata:
   dependencies:
     tslib: "npm:^2.6.2"
   checksum: 10c0/b628bcbbdc4fd08397544d398ac457fad5c88994a97c7f63738883ca8b1c253ae59f1c1316bf4f3e78c08ead9e6242a4237246370ca997110ca8dcce1c78b320
+  languageName: node
+  linkType: hard
+
+"@sapphire/timestamp@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@sapphire/timestamp@npm:1.0.3"
+  checksum: 10c0/97d8b9196674b1272b87366d386bd7077bfc14f0227e79bce36d4d13231e2f14eb6a517b043117916dd8fee2486d421b01494d462f7f01b6d951c2b50042bc7f
   languageName: node
   linkType: hard
 
@@ -1139,6 +1156,7 @@ __metadata:
     "@sapphire/discord.js-utilities": "npm:^7.2.1"
     "@sapphire/framework": "npm:^5.2.1"
     "@sapphire/plugin-editable-commands": "npm:^4.0.2"
+    "@sapphire/plugin-logger": "npm:^4.0.2"
     "@sapphire/utilities": "npm:^3.16.2"
     chalk: "npm:^5.3.0"
     discord.js: "npm:^14.15.2"
