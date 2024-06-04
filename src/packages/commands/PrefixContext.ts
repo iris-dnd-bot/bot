@@ -94,7 +94,11 @@ export class PrefixContext {
         switch (type) {
             case 'USER':
                 embed.setDescription(
-                    this.lang('commands:error')(error, type, this.cmd.name),
+                    this.lang('commands:error')(
+                        error,
+                        type,
+                        this.cmd.name,
+                    ).replace(/{{error}}/g, this.emote('error')),
                 );
                 break;
 

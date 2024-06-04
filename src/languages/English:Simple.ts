@@ -22,9 +22,9 @@ export default class EN_US extends Language {
             const isbeta = !!env.ENV;
             const e = `${err.name}[${err.cause ?? 'UNKNOWN'}] ${err.message}`;
             if (type === 'USER') {
-                return [`{{error}} failed to run: \`${err.message}\` `].join(
-                    ' ',
-                );
+                return [
+                    `{{error}} failed to run: \`${err.message || '<not provided>'}\` `,
+                ].join(' ');
             }
             if (type == 'OTHER') {
                 return [

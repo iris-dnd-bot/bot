@@ -1,9 +1,9 @@
 import pathlib from 'node:path';
-import console, { log } from 'node:console';
+import console from 'node:console';
 import fs from 'node:fs';
 import tsconfig from '../tsconfig.json' with { type: 'json' };
 import process from 'node:process';
-
+const DEBUG = false;
 /**
  * reads all files.
  * @returns {string[]}
@@ -63,3 +63,8 @@ for (const file of files) {
     fs.writeFileSync(file, newContent);
 }
 console.log(`[INFO] updated ${i}/${files.length} file${i === 1 ? '' : 's'}.`);
+
+function log(...data) {
+    if (!DEBUG) return;
+    return console.log(...data);
+}
