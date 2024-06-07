@@ -9,6 +9,30 @@ export class Users {
     constructor(public readonly db: Db) {
         this.cache = new Collection();
     }
+
+    async create(user: User, data?: users) {
+        const existing = await this.fetch(user).catch(() => -1);
+        if (typeof existing === 'number') {
+            return false;
+        }
+        if (!existing) {
+            return this.db.$prisma.users
+                .create({
+                    data: {
+                        ...data,
+                        userId: user.id,
+                    },
+                })
+                .then((data) => {
+                    this.cache.set(user.id, data);
+                    return data;
+                });
+        } else {
+            this.cache.set(user.id, existing);
+            return existing;
+        }
+    }
+
     get(user: User): typings.NullAble<users>;
     get(user: User, key: keyof users, fetch: true): Promise<users[typeof key]>;
     get(user: User, key: true): Promise<users>;
@@ -38,9 +62,11 @@ export class Users {
                 ...old,
                 ...data,
             };
+            //@ts-expect-error
+            delete newData.MongoId;
             return this.db.$prisma.users
                 .update({
-                    where: { MongoId: newData.MongoId },
+                    where: { MongoId: old.MongoId },
                     data: { ...newData },
                 })
                 .then((data) => {

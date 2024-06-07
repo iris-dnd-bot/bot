@@ -53,6 +53,33 @@ export class Guilds {
                 });
         }
     }
+
+    async create(guild: Guild) {
+        const existing = await this.fetch(guild).catch((e) => {
+            console.error(e);
+            return -1;
+        });
+        if (typeof existing === 'number') {
+            return null;
+        }
+        if (!existing) {
+            return this.db.$prisma.guilds
+                .create({
+                    data: {
+                        guildId: guild.id,
+                        prefix: ['.'],
+                    },
+                })
+                .then((data) => {
+                    this.cache.set(guild.id, data);
+                    return data;
+                });
+        } else {
+            this.cache.set(guild.id, existing);
+            return existing;
+        }
+    }
+
     fetch(
         guild: Guild,
         key: keyof guilds,
