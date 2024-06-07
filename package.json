@@ -14,7 +14,7 @@
         "@sapphire/plugin-editable-commands": "^4.0.2",
         "@sapphire/utilities": "^3.16.2",
         "chalk": "^5.3.0",
-        "discord.js": "^14.15.2"
+        "discord.js": "^14.15.3"
     },
     "scripts": {
         "replace-paths": "node scripts/module-path.mjs",
