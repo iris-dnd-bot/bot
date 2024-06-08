@@ -19,10 +19,12 @@
     },
     "scripts": {
         "replace-paths": "node scripts/module-path.mjs",
+        "purge-commands": "node ./scripts/purge-commands.mjs",
         "rm": "rm -rf dist",
         "typecheck": "yarn tsc --noEmit",
-        "build": "yarn rm && yarn tsc && yarn replace-paths",
+        "build:purge": "yarn rm && yarn tsc && yarn replace-paths && node ./scripts/purge-commands.mjs",
         "watch": "yarn tsc --watch",
+        "build": "yarn rm && yarn tsc && yarn replace-paths",
         "dev": "yarn build && node dist/index.js",
         "start": "node dist/index.js"
     },
