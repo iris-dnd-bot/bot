@@ -1,3 +1,4 @@
+import { InteractionContext } from '@iris/commands/context/InteractionContext.js';
 import { createFunctionPrecondition } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { Subcommand } from '@sapphire/plugin-subcommands';
@@ -5,9 +6,11 @@ import {
     CacheType,
     ChatInputCommandInteraction,
     Message,
+    PermissionResolvable,
     SlashCommandBuilder,
     SlashCommandSubcommandBuilder,
 } from 'discord.js';
+import { dmPermissions } from './constants.js';
 
 export function applyPrefixedCommandOptions(options: Command.Options) {
     return (cls: any) => {
@@ -22,6 +25,20 @@ export function applyPrefixedCommandOptions(options: Command.Options) {
 
         return T as any;
     };
+}
+
+export function setPermissions(permission: PermissionResolvable) {
+    return createFunctionPrecondition((msg: Message | InteractionContext) => {
+        if (msg instanceof InteractionContext) {
+            return msg.hasPermissions(permission, 'USER');
+        }
+        if (msg.channel.isDMBased()) {
+            return dmPermissions.includes(permission);
+        }
+        const perms = msg.channel.permissionsFor(msg.author.id);
+        if (perms === null) return false;
+        return perms.has(permission);
+    });
 }
 
 export function ownerOnly() {
@@ -42,9 +59,13 @@ export function applyChatInputCommandOptions(
     fn: (builder: SlashCommandBuilder) => any,
 ) {
     return (cls: any) => {
+        const f = fn(new SlashCommandBuilder());
         class T extends cls {
+            builder = f;
             public registerApplicationCommands(registry: Command.Registry) {
-                registry.registerChatInputCommand(fn);
+                registry.registerChatInputCommand(() => {
+                    return f;
+                });
             }
         }
 
@@ -82,6 +103,25 @@ export function applySubSlashCommandOptions(
             builder = fn(new SlashCommandSubcommandBuilder());
         }
 
+        return T as any;
+    };
+}
+
+export interface MetaData {
+    name: string;
+    category: string;
+    description?: string;
+    examples?: Array<string>;
+    id?: string;
+    nsfw?: boolean;
+    details?: string;
+    usage?: string;
+}
+export function addMetaData(meta: MetaData) {
+    return (cls: any) => {
+        class T extends cls {
+            metadata = meta;
+        }
         return T as any;
     };
 }

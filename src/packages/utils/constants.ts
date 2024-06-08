@@ -1,6 +1,7 @@
 import { updateGitVersion } from './Util.js';
 import { getEnv } from './env.js';
 import pjson from '../../../package.json' with { type: 'json' };
+import { PermissionResolvable } from 'discord.js';
 export const EMOTES = {
     DEFAULT: {
         error: ':x:',
@@ -38,3 +39,12 @@ export enum languages {
 }
 
 export const allowedLanguages = ['EN_US', 'EN_GB'] as const;
+
+export const dmPermissions: PermissionResolvable[] = [
+    'AddReactions',
+    'AttachFiles',
+    'EmbedLinks',
+    'ReadMessageHistory',
+    'SendMessages',
+    'ViewChannel',
+];

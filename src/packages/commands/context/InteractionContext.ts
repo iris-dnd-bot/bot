@@ -6,12 +6,19 @@ import {
     InteractionReplyOptions,
     PermissionResolvable,
 } from 'discord.js';
+import { CustomCommand } from '../CustomCommand.js';
 
-export class InteractionContext {
+export class InteractionContext<
+    Option extends Record<string, any> = Record<string, any>,
+> {
     interaction: Command.ChatInputCommandInteraction;
-
-    constructor(interaction: Command.ChatInputCommandInteraction) {
+    private $args: Option;
+    constructor(
+        interaction: Command.ChatInputCommandInteraction,
+        args?: Option,
+    ) {
         this.interaction = interaction;
+        this.$args = args || ({} as Option);
     }
 
     async embed(
@@ -81,6 +88,9 @@ export class InteractionContext {
     get options() {
         return this.interaction.options;
     }
+    get args() {
+        return this.$args;
+    }
 
     hasPermissions(
         permission: PermissionResolvable,
@@ -92,14 +102,20 @@ export class InteractionContext {
         }
         switch (t) {
             case 'CLIENT':
-                return this.channel
-                    .permissionsFor(this.client.user)
-                    ?.has(permission);
+                return (
+                    this.channel
+                        .permissionsFor(this.client.user)
+                        ?.has(permission) ?? false
+                );
 
             case 'USER':
-                return this.channel
-                    .permissionsFor(this.user.id)
-                    ?.has(permission);
+                return (
+                    this.channel
+                        .permissionsFor(this.user.id)
+                        ?.has(permission) ?? false
+                );
+            default:
+                return false;
         }
     }
 
@@ -130,5 +146,31 @@ export class InteractionContext {
             ephemeral: !this.interaction.replied,
         };
         return this.say(`${this.emote('success')} ${content}`, options);
+    }
+
+    async help(command: CustomCommand) {
+        const options = command.metadata;
+
+        const thing = [
+            options.description,
+            '\u200b',
+            `**Usage**: ${options.usage}`,
+            `**Group**: ${options.category}`,
+            options.examples
+                ? `**Examples**: ${options.examples?.map((e) => `\`${e}\``)}`
+                : '',
+            options.details ? options.details : '',
+        ].filter((v) => !!v);
+
+        const embed = new EmbedBuilder();
+        embed
+            .setFooter({
+                text: 'Do not include <> or [] — They indicate <required> and [optional] arguments.',
+            })
+            .setColor('#bedead')
+            .setAuthor({
+                name: `\`/${command.builder.name}\`${command.metadata.nsfw ? '[NSFW]' : ''} `,
+            })
+            .setDescription(thing.join('\n'));
     }
 }
