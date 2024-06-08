@@ -1,5 +1,5 @@
 import { REST, Routes } from 'discord.js';
-import { getEnv } from '../dist/packages/utils/env.js';
+import { getEnv } from './helpers/env.mjs';
 
 const { DISCORD_TOKEN, CLIENT_ID } = getEnv();
 
