@@ -15,7 +15,7 @@
         "@sapphire/plugin-subcommands": "^6.0.3",
         "@sapphire/utilities": "^3.16.2",
         "chalk": "^5.3.0",
-        "discord.js": "^14.15.2"
+        "discord.js": "^14.15.3"
     },
     "scripts": {
         "replace-paths": "node scripts/module-path.mjs",
@@ -27,10 +27,10 @@
         "start": "node dist/index.js"
     },
     "devDependencies": {
-        "@eslint/js": "^9.2.0",
+        "@eslint/js": "^9.4.0",
         "eslint": "^9.2.0",
-        "prettier": "3.2.5",
-        "prisma": "^5.13.0",
+        "prettier": "^3.3.1",
+        "prisma": "^5.15.0",
         "typescript": "^5.4.5",
         "typescript-eslint": "^7.8.0"
     }
