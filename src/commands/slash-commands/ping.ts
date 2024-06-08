@@ -1,5 +1,5 @@
 import { CustomCommand } from '@iris/commands/CustomCommand.js';
-import { InteractionContext } from '@iris/commands/context/InteractionContex.js';
+import { InteractionContext } from '@iris/commands/context/InteractionContext.js';
 import { applyChatInputCommandOptions } from '@iris/utils/decorators.js';
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { Message } from 'discord.js';

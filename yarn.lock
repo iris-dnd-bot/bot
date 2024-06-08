@@ -360,15 +360,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-editable-commands@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@sapphire/plugin-editable-commands@npm:4.0.2"
-  dependencies:
-    "@skyra/editable-commands": "npm:^3.0.1"
-  checksum: 10c0/449dd3738a69a3a9bd19cb0a19250e6d7ccbcb0283c37c5be27a8c6fd6b6e2b919945087e7bf60cde7688d6e611d51fc9fe848d3e372c9f09428e463fb95cc5a
-  languageName: node
-  linkType: hard
-
 "@sapphire/plugin-logger@npm:^4.0.2":
   version: 4.0.2
   resolution: "@sapphire/plugin-logger@npm:4.0.2"
@@ -376,6 +367,16 @@ __metadata:
     "@sapphire/timestamp": "npm:^1.0.3"
     colorette: "npm:^2.0.20"
   checksum: 10c0/d1672f454e3dd4d8e08e9790e021541011faf407a10c0ea780e159e62fba7afb1994f97e293522b886e6c517fdc28842567f906d6294b33a07e071e6439e3435
+  languageName: node
+  linkType: hard
+
+"@sapphire/plugin-subcommands@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@sapphire/plugin-subcommands@npm:6.0.3"
+  dependencies:
+    "@sapphire/utilities": "npm:^3.15.3"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/fbff559ff9374ffe6a60f1fff156b2365661549420b24b44176cadc11ccef6f2648adc50d396b1fc66094a23c0af2f15c42b41d9035a8a196985b1804934b1b3
   languageName: node
   linkType: hard
 
@@ -430,13 +431,6 @@ __metadata:
   version: 3.16.2
   resolution: "@sapphire/utilities@npm:3.16.2"
   checksum: 10c0/69144550cceffc2b427a2eece095481887110583064d3b965c1e1368b85591743cd055d9bdf12ab85430517c05b070c27dfec2670e0330e8f410b8e72b079f69
-  languageName: node
-  linkType: hard
-
-"@skyra/editable-commands@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "@skyra/editable-commands@npm:3.0.2"
-  checksum: 10c0/b85ff40fb02003a1be6fd60e26aba5be496bd3ec513ff2a9a0043d797a1a40859abefbe96d8e85fd054c60326384e811bd84c1312c0fc1d4fa93ad698771d77b
   languageName: node
   linkType: hard
 
@@ -1155,8 +1149,8 @@ __metadata:
     "@sapphire/decorators": "npm:^6.1.0"
     "@sapphire/discord.js-utilities": "npm:^7.2.1"
     "@sapphire/framework": "npm:^5.2.1"
-    "@sapphire/plugin-editable-commands": "npm:^4.0.2"
     "@sapphire/plugin-logger": "npm:^4.0.2"
+    "@sapphire/plugin-subcommands": "npm:^6.0.3"
     "@sapphire/utilities": "npm:^3.16.2"
     chalk: "npm:^5.3.0"
     discord.js: "npm:^14.15.2"

@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { InteractionContext } from './context/InteractionContex.js';
+import { InteractionContext } from './context/InteractionContext.js';
 
 export abstract class CustomCommand extends Command {
     public async chatInputRun(

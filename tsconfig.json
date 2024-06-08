@@ -32,7 +32,8 @@
             "@iris/i18n/*": ["packages/i18n/*"],
             "@iris/interactions/*": ["packages/commands/interactions/*"],
             "@iris/modules/*": ["packages/modules/*"],
-            "@iris/utils/*": ["packages/utils/*"]
+            "@iris/utils/*": ["packages/utils/*"],
+            "@iris/db/*": ["packages/db/*"]
         },
         "pretty": true
     }
