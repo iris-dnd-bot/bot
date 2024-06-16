@@ -216,7 +216,7 @@ __metadata:
     "@prisma/client": "npm:^5.15.0"
     "@sapphire/cli": "npm:^1.9.3"
     "@sapphire/decorators": "npm:^6.1.0"
-    "@sapphire/discord.js-utilities": "npm:^7.2.1"
+    "@sapphire/discord.js-utilities": "npm:^7.3.0"
     "@sapphire/framework": "npm:^5.2.1"
     "@sapphire/plugin-api": "npm:^6.1.1"
     "@sapphire/plugin-editable-commands": "npm:^4.0.2"
@@ -399,7 +399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^3.2.3":
+"@sapphire/discord-utilities@npm:^3.2.3, @sapphire/discord-utilities@npm:^3.3.0":
   version: 3.3.0
   resolution: "@sapphire/discord-utilities@npm:3.3.0"
   dependencies:
@@ -408,7 +408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^7.2.0, @sapphire/discord.js-utilities@npm:^7.2.1":
+"@sapphire/discord.js-utilities@npm:^7.2.0":
   version: 7.2.1
   resolution: "@sapphire/discord.js-utilities@npm:7.2.1"
   dependencies:
@@ -417,6 +417,18 @@ __metadata:
     "@sapphire/utilities": "npm:^3.15.3"
     tslib: "npm:^2.6.2"
   checksum: 10c0/ee510f15a4cd8277d0c4a81328d712c97a456695608160579ec999dc94bba64b15fc81d929c966e08bd325a8914d4d1014b912c5976d09f3808f3d2167e2ea08
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord.js-utilities@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "@sapphire/discord.js-utilities@npm:7.3.0"
+  dependencies:
+    "@sapphire/discord-utilities": "npm:^3.3.0"
+    "@sapphire/duration": "npm:^1.1.2"
+    "@sapphire/utilities": "npm:^3.16.2"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/7b415c3e90c494e4290b151f0b105c0d0704209cf2b42d5f77f0d68a3a48f399a6ae6652928a4e5db7ac4c6fea48702c066529277c860a3c655e99df742b3980
   languageName: node
   linkType: hard
 
