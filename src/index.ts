@@ -1,29 +1,8 @@
-import { GatewayIntentBits } from 'discord.js';
-import './setup';
-import { SapphireClient } from '@sapphire/framework';
+import '@sapphire/plugin-editable-commands';
+import * as SFramework from '@sapphire/framework';
+import * as constants from '@iris/utils/constants.js';
+import { getEnv } from '@iris/utils/env.js';
 
-const client = new SapphireClient({
-    intents: [
-        GatewayIntentBits.AutoModerationConfiguration,
-        GatewayIntentBits.AutoModerationExecution,
-        GatewayIntentBits.DirectMessagePolls,
-        GatewayIntentBits.DirectMessageReactions,
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.DirectMessageTyping,
-        GatewayIntentBits.GuildEmojisAndStickers,
-        GatewayIntentBits.GuildIntegrations,
-        GatewayIntentBits.GuildInvites,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessagePolls,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMessageTyping,
-        GatewayIntentBits.GuildModeration,
-        GatewayIntentBits.GuildPresences,
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildScheduledEvents,
-        GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildWebhooks,
-        GatewayIntentBits.MessageContent,
-    ],
-});
+const client = new SFramework.SapphireClient(constants.CLIENT_OPTIONS);
+
+await client.login(getEnv().DISCORD_TOKEN);

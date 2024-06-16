@@ -3,7 +3,7 @@ import console from 'node:console';
 import fs from 'node:fs';
 import tsconfig from '../tsconfig.json' with { type: 'json' };
 import process from 'node:process';
-const DEBUG = false;
+const DEBUG = true;
 /**
  * reads all files.
  * @returns {string[]}

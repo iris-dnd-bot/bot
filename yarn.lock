@@ -208,6 +208,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iris/bot@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@iris/bot@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.4.0"
+    "@prisma/client": "npm:^5.15.0"
+    "@sapphire/cli": "npm:^1.9.3"
+    "@sapphire/decorators": "npm:^6.1.0"
+    "@sapphire/discord.js-utilities": "npm:^7.2.1"
+    "@sapphire/framework": "npm:^5.2.1"
+    "@sapphire/plugin-api": "npm:^6.1.1"
+    "@sapphire/plugin-editable-commands": "npm:^4.0.2"
+    "@sapphire/plugin-pattern-commands": "npm:^6.0.2"
+    "@sapphire/plugin-subcommands": "npm:^6.0.3"
+    "@sapphire/stopwatch": "npm:^1.5.2"
+    "@sapphire/type": "npm:^2.4.4"
+    "@sapphire/utilities": "npm:^3.16.2"
+    chalk: "npm:^5.3.0"
+    discord.js: "npm:^14.15.3"
+    eslint: "npm:^9.2.0"
+    prettier: "npm:^3.3.1"
+    prisma: "npm:^5.15.0"
+    typescript: "npm:^5.4.5"
+    typescript-eslint: "npm:^7.8.0"
+  languageName: unknown
+  linkType: soft
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -278,15 +305,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:5.13.0":
-  version: 5.13.0
-  resolution: "@prisma/client@npm:5.13.0"
+"@prisma/client@npm:^5.15.0":
+  version: 5.15.0
+  resolution: "@prisma/client@npm:5.15.0"
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: 10c0/19a0d08237fd7bae6009417476dc3588df77102131e3c8df01a024e5dee78417a8079d5a3dbbb3ffee7b4117067a9c10912f5084a3a40884de8fde5314fb1227
+  checksum: 10c0/ee88b2fd60bc293d45f31b38629a9105de96b952c3dcfa9a71f23a6ce3d3d0200fb9a78e6f570eef29f707043f321545fc536974ba7cbd17d59a7dcd7d0c72dc
   languageName: node
   linkType: hard
 
@@ -1626,33 +1653,6 @@ __metadata:
   checksum: 10c0/331cd07fafcb3b24100613e4b53e1a2b4feab11e671e655d46dc09ee233da5011284d09ca40c4ecbdfe1d0004f462958675c224a804259f2f78d2465a87824bc
   languageName: node
   linkType: hard
-
-"iris@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "iris@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.4.0"
-    "@prisma/client": "npm:5.13.0"
-    "@sapphire/cli": "npm:^1.9.3"
-    "@sapphire/decorators": "npm:^6.1.0"
-    "@sapphire/discord.js-utilities": "npm:^7.2.1"
-    "@sapphire/framework": "npm:^5.2.1"
-    "@sapphire/plugin-api": "npm:^6.1.1"
-    "@sapphire/plugin-editable-commands": "npm:^4.0.2"
-    "@sapphire/plugin-pattern-commands": "npm:^6.0.2"
-    "@sapphire/plugin-subcommands": "npm:^6.0.3"
-    "@sapphire/stopwatch": "npm:^1.5.2"
-    "@sapphire/type": "npm:^2.4.4"
-    "@sapphire/utilities": "npm:^3.16.2"
-    chalk: "npm:^5.3.0"
-    discord.js: "npm:^14.15.3"
-    eslint: "npm:^9.2.0"
-    prettier: "npm:^3.3.1"
-    prisma: "npm:^5.15.0"
-    typescript: "npm:^5.4.5"
-    typescript-eslint: "npm:^7.8.0"
-  languageName: unknown
-  linkType: soft
 
 "is-extglob@npm:^2.1.1":
   version: 2.1.1

@@ -12,8 +12,7 @@ repos:
   - repo: local
     hooks:
       - id: format
-        name: Format
-        stages: [ push ]
+        name: tsc
         language: system
         entry: yarn tsc --noEmit
         pass_filenames: false

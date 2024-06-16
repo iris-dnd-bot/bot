@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,17 +7,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model guilds {
-  MongoId String   @id @default(auto()) @map("_id") @db.ObjectId
-  guildId String   @map("guild_id")
-  prefix  String[] @default([])
-
-  @@index([guildId])
-}
-
+// USER_MODELS
 model users {
   MongoId String @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String @map("user_id")
+}
 
-  @@index([userId])
+// USER_TYPES
+
+// GUILD_MODELS
+model guilds {
+  MongoId String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+// MOD_LOG_SETTINGS
+model modlog {
+  MongoId String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+// MOD_MAIL_SETTINGS
+model modmail {
+  MongoId String @id @default(auto()) @map("_id") @db.ObjectId
 }
