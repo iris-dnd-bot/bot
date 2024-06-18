@@ -3,7 +3,7 @@ import { Command } from '@sapphire/framework';
 import { APIEmbed, Message } from 'discord.js';
 import { MessageOptions, send } from '@sapphire/plugin-editable-commands';
 
-export class Context {
+export class PrefixContext {
     @enumerable(false)
     private $msg: Message;
 
